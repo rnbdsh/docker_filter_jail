@@ -31,9 +31,10 @@ def main(f_in=stdin, f_out=stdout):
     while True:
         # forward "sanitized" input to IPython
         userinput = FILTER(f_in.readline().decode()).strip()
-        print(f"User input: '''{userinput}'''")
-        proc.stdin.write(f"{userinput}\n".encode())
-        proc.stdin.flush()
+        if userinput:
+            print(f"User input: '''{userinput}'''")
+            proc.stdin.write(f"{userinput}\n".encode())
+            proc.stdin.flush()
 
 
 if __name__ == "__main__":
